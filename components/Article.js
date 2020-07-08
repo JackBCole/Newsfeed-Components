@@ -84,7 +84,26 @@ const data = [
 
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+  },
+  {
+
+          title: 'Extra article!',
+    date: 'Jan 11th, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+    
+    
   }
 ];
 
@@ -111,3 +130,69 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+const articlePage = document.querySelector('.articles')
+// const {expand, collapse} = plusButton
+
+
+
+function articleMaker(articleData){
+  const article = document.createElement('div')
+  const title = document.createElement('h2')
+  const date = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const paragraph4 = document.createElement('p')
+
+  const buttonExpand = document.createElement('span')
+
+
+
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(paragraph4)
+  article.appendChild(buttonExpand)
+
+  article.classList.add('article')
+  paragraph1.classList.add('date')
+  buttonExpand.classList.add('expandButton')
+
+  article.className = 'articles'
+  title.classname = 'titles'
+  date.className = 'article-date'
+  paragraph1.className = 'first-paragraph'
+  paragraph2.className = 'second-paragraph'
+  paragraph3.className = 'third-paragraph'
+  paragraph4.className = 'fourth-paragraph'
+  buttonExpand.className = 'expandButton'
+
+  date.textContent = articleData.date
+  title.textContent = articleData.title
+  paragraph1.textContent = ''
+  paragraph2.textContent = ''
+  paragraph3.textContent = ''
+  paragraph4.textContent = ''
+
+  buttonExpand.textContent = '+'
+
+
+  buttonExpand.addEventListener('click', () => {
+    paragraph1.textContent = articleData.firstParagraph 
+    paragraph2.textContent = articleData.secondParagraph
+    paragraph3.textContent = articleData.thirdParagraph
+    paragraph4.textContent = articleData.fourthParagraph
+  })
+
+  return article
+}
+
+// console.log(articleMaker({title: 'atitle', date: 'this date 2000', 
+// paragraph1: 'haha', paragraph2: 'haha', paragraph3: 'haha', aButton: '+'}))
+
+data.forEach(object => {
+  const rawArticleData = articleMaker(object)
+  articlePage.appendChild(rawArticleData)
+})

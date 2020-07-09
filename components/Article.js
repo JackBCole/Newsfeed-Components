@@ -102,8 +102,7 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-    
-    
+
   }
 ];
 
@@ -132,8 +131,10 @@ const data = [
 */
 
 function articleMaker(articleData){
+
   const article = document.createElement('div')
   article.classList.add('article')
+
 
   const title = document.createElement('h2')
   title.textContent = articleData.title
@@ -151,26 +152,27 @@ function articleMaker(articleData){
   const paragraph3 = document.createElement('p')
   paragraph3.textContent = articleData.thirdParagraph
 
+
   // const paragraph4 = document.createElement('p')
   // paragraph4.textContent = articleData.fourthParagraph
 
   const buttonExpand = document.createElement('span')
   buttonExpand.classList.add('expandButton')
   buttonExpand.textContent = '+'
+  article.append(title, date, paragraph1, paragraph2, paragraph3, buttonExpand)
 
 buttonExpand.addEventListener('click', () => {
   article.classList.toggle('article-open')
-  article.appendChild(title, date, paragraph1, paragraph2, paragraph3, buttonExpand)
+  
 }) 
 
-  // paragraph4.textContent = articleData.fourthParagraph
   return article
 
-  // article.append(title, date, paragraph1, paragraph2, paragraph3, buttonExpand)
 }
 const articles = document.querySelector('.articles')
-console.log(articleMaker(data))
-// console.log(articleMaker({title: 'atitle', date: 'this date 2000', 
+
+// console.log(articleMaker(data))
+//  console.log(articleMaker({title: 'atitle', date: 'this date 2000', 
 // paragraph1: 'haha', paragraph2: 'haha', paragraph3: 'haha', aButton: '+'}))
 
 data.forEach(object => {

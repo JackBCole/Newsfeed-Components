@@ -130,69 +130,49 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
-const articlePage = document.querySelector('.articles')
-// const {expand, collapse} = plusButton
-
-
 
 function articleMaker(articleData){
   const article = document.createElement('div')
+  article.classList.add('article')
+
   const title = document.createElement('h2')
+  title.textContent = articleData.title
+
   const date = document.createElement('p')
+  date.classList.add('date')
+  date.textContent = articleData.date
+
   const paragraph1 = document.createElement('p')
+  paragraph1.textContent = articleData.firstParagraph
+
   const paragraph2 = document.createElement('p')
+  paragraph2.textContent = articleData.secondParagraph
+
   const paragraph3 = document.createElement('p')
-  const paragraph4 = document.createElement('p')
+  paragraph3.textContent = articleData.thirdParagraph
+
+  // const paragraph4 = document.createElement('p')
+  // paragraph4.textContent = articleData.fourthParagraph
 
   const buttonExpand = document.createElement('span')
-
-
-
-  article.appendChild(title)
-  article.appendChild(date)
-  article.appendChild(paragraph1)
-  article.appendChild(paragraph2)
-  article.appendChild(paragraph3)
-  article.appendChild(paragraph4)
-  article.appendChild(buttonExpand)
-
-  article.classList.add('article')
-  paragraph1.classList.add('date')
   buttonExpand.classList.add('expandButton')
-
-  article.className = 'articles'
-  title.classname = 'titles'
-  date.className = 'article-date'
-  paragraph1.className = 'first-paragraph'
-  paragraph2.className = 'second-paragraph'
-  paragraph3.className = 'third-paragraph'
-  paragraph4.className = 'fourth-paragraph'
-  buttonExpand.className = 'expandButton'
-
-  date.textContent = articleData.date
-  title.textContent = articleData.title
-  paragraph1.textContent = ''
-  paragraph2.textContent = ''
-  paragraph3.textContent = ''
-  paragraph4.textContent = ''
-
   buttonExpand.textContent = '+'
 
+buttonExpand.addEventListener('click', () => {
+  article.classList.toggle('article-open')
+  article.appendChild(title, date, paragraph1, paragraph2, paragraph3, buttonExpand)
+}) 
 
-  buttonExpand.addEventListener('click', () => {
-    paragraph1.textContent = articleData.firstParagraph 
-    paragraph2.textContent = articleData.secondParagraph
-    paragraph3.textContent = articleData.thirdParagraph
-    paragraph4.textContent = articleData.fourthParagraph
-  })
-
+  // paragraph4.textContent = articleData.fourthParagraph
   return article
-}
 
+  // article.append(title, date, paragraph1, paragraph2, paragraph3, buttonExpand)
+}
+const articles = document.querySelector('.articles')
+console.log(articleMaker(data))
 // console.log(articleMaker({title: 'atitle', date: 'this date 2000', 
 // paragraph1: 'haha', paragraph2: 'haha', paragraph3: 'haha', aButton: '+'}))
 
 data.forEach(object => {
-  const rawArticleData = articleMaker(object)
-  articlePage.appendChild(rawArticleData)
+  articles.appendChild(articleMaker(object))
 })
